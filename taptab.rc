@@ -1,0 +1,2 @@
+1L2S=ls -la ./
+2S2L=cat ./index.js

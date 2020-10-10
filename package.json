@@ -1,0 +1,19 @@
+{
+  "name": "taptab",
+  "version": "1.0.0",
+  "description": "Like crontab but taptab",
+  "main": "index.js",
+  "scripts": {
+    "start": "GPIO_PIN=0 node index.js",
+    "test": "mocha --timeout=30000 ./*.spec.js"
+  },
+  "keywords": [
+    "gpio",
+    "sensor"
+  ],
+  "author": "Saka7",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^8.1.3"
+  }
+}
