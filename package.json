@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "GPIO_PIN=0 node index.js",
-    "test": "mocha --timeout=30000 ./*.spec.js"
+    "test": "mocha ./src/**/*.spec.js"
   },
   "keywords": [
     "gpio",

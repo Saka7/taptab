@@ -1,5 +1,7 @@
 const EventEmitter = require('events');
 const {strictEqual: equal} = require('assert');
+const {promisify} = require('util');
+
 const tapListener = require('./tapListener');
 
 const ONE_TICK_MS = 3;
@@ -48,47 +50,26 @@ const oneShortOneLongTap = () => {
     return ee;
 };
 
-describe('tapListener', () => {
-    it('should not detect any taps', function (done) {
-        const ee = noTaps();
-        this.timeout(100000);
+describe('tapListener', function() {
+    this.timeout(10000);
 
-        tapListener(ee, (_, pattern) => {
-            equal('', pattern);
-            done();
-        });
-    });
-    it('should detect one short tap', function (done) {
-        const ee = oneShortTap();
-        this.timeout(100000);
-
-        tapListener(ee, (_, pattern) => {
-            equal('1S', pattern);
-            done();
-        });
+    it('should not detect any taps', async () => {
+        const pattern = await promisify(tapListener)(noTaps());
+        equal('', pattern);
     });
 
-    it('should detect one long tap', function (done) {
-        const ee = oneLongTap();
-        this.timeout(100000);
-
-        tapListener(ee, (_, pattern) => {
-            equal('1L', pattern);
-            done();
-        });
+    it('should detect one short tap', async () => {
+        const pattern = await promisify(tapListener)(oneShortTap());
+        equal('1S', pattern);
     });
 
-    it('should detect one short and one long tap', function (done) {
-        const ee = oneShortOneLongTap();
-        this.timeout(100000);
+    it('should detect one long tap', async () => {
+        const pattern = await promisify(tapListener)(oneLongTap());
+        equal('1L', pattern);
+    });
 
-        tapListener(ee, (_, pattern) => {
-            equal('1S1L', pattern);
-            done();
-        });
+    it('should detect one short and one long tap', async () => {
+        const pattern = await promisify(tapListener)(oneShortOneLongTap());
+        equal('1S1L', pattern);
     });
 });
-
-
-
-

@@ -3,8 +3,8 @@ const {exec} = require('child_process');
 const {readFile} = require('fs').promises;
 const path = require('path');
 
-const gpioEmitter = require('./gpioEmitter');
-const tapListener = require('./tapListener');
+const gpioEmitter = require('./src/gpioEmitter');
+const tapListener = require('./src/tapListener');
 
 const CONFIG_FILE = process.env.CONFIG_FILE || path.join(__dirname, './taptab.rc');
 

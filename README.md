@@ -1,5 +1,7 @@
 # TapTab
 
+GPIO sensor button's taps to CLI commands binding.
+
 > Like `crontab` but `taptab`
 
 ```bash
@@ -18,8 +20,8 @@ FORMAT:
 
 TYPE:
 
-    - `S` - short tap (<= 300ms)
-    - `L` - long tap (> 300ms)
+    - S - short tap (<= 300ms)
+    - L - long tap (> 300ms)
 
 EXAMPLE:
 ```
