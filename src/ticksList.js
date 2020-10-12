@@ -8,8 +8,8 @@ class TicksList {
         return this.valueCount >= this.params.MIN_TICKS_L ? 'L' : 'S';
     }
 
-    setValue() {
-        return this.typeCount ? `${this.typeCount}${this.prevType}` : '';
+    appendPattern() {
+        this.pattern += this.typeCount ? `${this.typeCount}${this.prevType}` : '';
     }
 
     push(value) {
@@ -27,7 +27,7 @@ class TicksList {
             if (this.getType() === this.prevType) {
                 this.typeCount++;
             } else {
-                this.pattern += this.setValue();
+                this.appendPattern();
                 this.prevType = this.getType();
                 this.typeCount = 1;
             }
@@ -37,10 +37,8 @@ class TicksList {
     }
 
     flush() {
-        if (this.prevValue) {
-            this.push(false);
-        }
-        this.pattern += this.setValue();
+        if (this.prevValue) this.push(false);
+        this.appendPattern();
     }
 
     pushAll(vals = []) {
